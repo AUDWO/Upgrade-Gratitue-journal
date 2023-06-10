@@ -14,6 +14,11 @@ const Home = () => {
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `감정 일기장`;
+  });
+
+  useEffect(() => {
     //getTime메소드를 씀으로써 날짜를 비교할 수 있다.
 
     if (diaryList.length > 1) {
@@ -26,7 +31,10 @@ const Home = () => {
       const lastDay = new Date(
         curDate.getFullYear(),
         curDate.getMonth() + 1,
-        0
+        0,
+        23,
+        59,
+        59
       ).getTime();
 
       setData(diaryList.filter((it) => firstDay <= it.data <= lastDay));
